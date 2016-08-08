@@ -15,13 +15,45 @@ import java.io.File;
 @Mojo(name = "schemaspy", defaultPhase = LifecyclePhase.SITE)
 public class SchemaSpyMojo extends AbstractMojo {
   /**
+   * Type of database.
+   */
+  @Parameter(defaultValue = "mysql", property = "databaseType", required = true)
+  private String databaseType;
+
+  /**
    * Location of the file.
    */
   @Parameter(defaultValue = "${project.build.directory}", property = "outputDir", required = true)
-  private File outputDirectory;
+  private String outputDirectory;
+
+  /**
+   * Host of database.
+   */
+  @Parameter(defaultValue = "localhost", property = "host", required = true)
+  private String host;
+
+  /**
+   * Name of database to connect to
+   */
+  @Parameter(defaultValue = "test", property = "dbName", required = true)
+  private String dbName;
+
+  /**
+   * Valid database user id with read access.
+   */
+  @Parameter(defaultValue = "root", property = "user", required = true)
+  private String user;
 
   public void execute() throws MojoExecutionException, MojoFailureException {
-    getLog().info("sample plugin start!");
-    //getLog().info("project.build.directory is " + outputDirectory.getAbsolutePath());
+    getLog().info("plugin start!");
+
+    SchemaSpyConfigMap configMap = new SchemaSpyConfigMap();
+    configMap.put(ParameterType.DATABASE_TYPE, databaseType);
+    configMap.put(ParameterType.OUTPUT_DIRECTORY, outputDirectory);
+    configMap.put(ParameterType.HOST, host);
+    configMap.put(ParameterType.DB_NAME, dbName);
+    configMap.put(ParameterType.USER, user);
+
+    getLog().info("plugin end!");
   }
 }
