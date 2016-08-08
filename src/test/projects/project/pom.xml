@@ -15,7 +15,6 @@
                 <groupId>com.higedrum</groupId>
                 <artifactId>schemaspy-maven-plugin</artifactId>
                 <configuration>
-
                 </configuration>
             </plugin>
         </plugins>
