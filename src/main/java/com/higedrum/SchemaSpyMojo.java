@@ -22,6 +22,6 @@ public class SchemaSpyMojo extends AbstractMojo {
 
   public void execute() throws MojoExecutionException, MojoFailureException {
     getLog().info("sample plugin start!");
-    getLog().info("project.build.directory is " + outputDirectory.getAbsolutePath());
+    //getLog().info("project.build.directory is " + outputDirectory.getAbsolutePath());
   }
 }
