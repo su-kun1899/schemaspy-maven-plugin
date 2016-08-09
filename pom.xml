@@ -31,15 +31,20 @@
             <version>3.2.5</version>
         </dependency>
         <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version>3.0.24</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.3</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
             <version>3.4</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-utils</artifactId>
-            <version>3.0.24</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

@@ -47,12 +47,8 @@ public class SchemaSpyMojo extends AbstractMojo {
   public void execute() throws MojoExecutionException, MojoFailureException {
     getLog().info("plugin start!");
 
-    SchemaSpyConfigMap configMap = new SchemaSpyConfigMap();
-    configMap.put(ParameterType.DATABASE_TYPE, databaseType);
-    configMap.put(ParameterType.OUTPUT_DIRECTORY, outputDirectory);
-    configMap.put(ParameterType.HOST, host);
-    configMap.put(ParameterType.DB_NAME, dbName);
-    configMap.put(ParameterType.USER, user);
+    SchemaSpy schemaSpy = new SchemaSpy(new SchemaSpyConfigMap());
+    schemaSpy.execute();
 
     getLog().info("plugin end!");
   }
