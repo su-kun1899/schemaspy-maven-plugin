@@ -21,7 +21,6 @@ public class SchemaSpyConfigMap {
     configMap.put(ParameterType.DB_NAME, "sample");
     configMap.put(ParameterType.USER, "root");
     configMap.put(ParameterType.CHAR_SET, "utf-8");
-    configMap.put(ParameterType.SCHEMA, "sample");
   }
 
   public String put(ParameterType key, String value){
