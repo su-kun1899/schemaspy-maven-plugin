@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
-    <name>schemaspy-maven-plugin Maven Plugin</name>
+    <name>SchemaSpy Maven Plugin</name>
 
     <url>https://github.com/su-kun1899/schemaspy-maven-plugin</url>
 
