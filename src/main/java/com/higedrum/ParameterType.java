@@ -8,7 +8,8 @@ public enum ParameterType {
   OUTPUT_DIRECTORY("-o"),
   HOST("-host"),
   DB_NAME("-db"),
-  USER("-u");
+  USER("-u"),
+  CHAR_SET("-charset");
 
   ParameterType(String parameter) {
     this.parameter = parameter;
