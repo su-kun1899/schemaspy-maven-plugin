@@ -86,6 +86,7 @@ public class Table implements Comparable<Table> {
                 schema == null ? name : (schema + '.' + name));
         setComments(comments);
         initColumns(excludeIndirectColumns, excludeColumns);
+        // TODO
         initIndexes();
         initPrimaryKeys(db.getMetaData());
     }

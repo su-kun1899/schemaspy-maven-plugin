@@ -248,8 +248,10 @@ public class SchemaAnalyzer {
                     System.out.print(".");
                 }
                 ImageWriter.getInstance().writeImages(outputDir);
-                ResourceWriter.getInstance().writeResource("/jquery.js", new File(outputDir, "/jquery.js"));
-                ResourceWriter.getInstance().writeResource("/schemaSpy.js", new File(outputDir, "/schemaSpy.js"));
+                ResourceWriter.getInstance().writeResource("/js/jquery.js", new File(outputDir,
+                    "/jquery.js"));
+                ResourceWriter.getInstance().writeResource("/js/schemaSpy.js", new File(outputDir,
+                    "/schemaSpy.js"));
                 if (!fineEnabled)
                     System.out.print(".");
 
@@ -625,54 +627,6 @@ public class SchemaAnalyzer {
         for (Iterator iter = recursiveConstraints.iterator(); iter.hasNext(); ) {
             ForeignKeyConstraint constraint = (ForeignKeyConstraint)iter.next();
             out.writeln("ALTER TABLE " + schema + "." + constraint.getChildTable() + " DROP CONSTRAINT " + constraint.getName() + ";");
-        }
-    }
-    */
-
-    /**
-     * Currently very DB2-specific
-     * @param recursiveConstraints List
-     * @param schema String
-     * @param out LineWriter
-     * @throws IOException
-     */
-    /* we'll eventually want to put this functionality back in with a
-     * database independent implementation
-    private static void writeRestoreRecursiveConstraintsSql(List recursiveConstraints, String schema, LineWriter out) throws IOException {
-        Map ruleTextMapping = new HashMap();
-        ruleTextMapping.put(new Character('C'), "CASCADE");
-        ruleTextMapping.put(new Character('A'), "NO ACTION");
-        ruleTextMapping.put(new Character('N'), "NO ACTION"); // Oracle
-        ruleTextMapping.put(new Character('R'), "RESTRICT");
-        ruleTextMapping.put(new Character('S'), "SET NULL");  // Oracle
-
-        for (Iterator iter = recursiveConstraints.iterator(); iter.hasNext(); ) {
-            ForeignKeyConstraint constraint = (ForeignKeyConstraint)iter.next();
-            out.write("ALTER TABLE \"" + schema + "\".\"" + constraint.getChildTable() + "\" ADD CONSTRAINT \"" + constraint.getName() + "\"");
-            StringBuffer buf = new StringBuffer();
-            for (Iterator columnIter = constraint.getChildColumns().iterator(); columnIter.hasNext(); ) {
-                buf.append("\"");
-                buf.append(columnIter.next());
-                buf.append("\"");
-                if (columnIter.hasNext())
-                    buf.append(",");
-            }
-            out.write(" FOREIGN KEY (" + buf.toString() + ")");
-            out.write(" REFERENCES \"" + schema + "\".\"" + constraint.getParentTable() + "\"");
-            buf = new StringBuffer();
-            for (Iterator columnIter = constraint.getParentColumns().iterator(); columnIter.hasNext(); ) {
-                buf.append("\"");
-                buf.append(columnIter.next());
-                buf.append("\"");
-                if (columnIter.hasNext())
-                    buf.append(",");
-            }
-            out.write(" (" + buf.toString() + ")");
-            out.write(" ON DELETE ");
-            out.write(ruleTextMapping.get(new Character(constraint.getDeleteRule())).toString());
-            out.write(" ON UPDATE ");
-            out.write(ruleTextMapping.get(new Character(constraint.getUpdateRule())).toString());
-            out.writeln(";");
         }
     }
     */

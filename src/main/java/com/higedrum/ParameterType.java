@@ -9,7 +9,8 @@ public enum ParameterType {
   HOST("-host"),
   DB_NAME("-db"),
   USER("-u"),
-  CHAR_SET("-charset");
+  CHAR_SET("-charset"),
+  SCHEMA("-s");
 
   ParameterType(String parameter) {
     this.parameter = parameter;
