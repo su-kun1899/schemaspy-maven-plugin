@@ -15,6 +15,7 @@
                 <groupId>com.higedrum</groupId>
                 <artifactId>schemaspy-maven-plugin</artifactId>
                 <configuration>
+                    <databaseType>mysql</databaseType>
                 </configuration>
             </plugin>
         </plugins>

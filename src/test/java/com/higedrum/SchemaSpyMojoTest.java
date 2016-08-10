@@ -7,6 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.junit.Assert.assertTrue;
 
@@ -29,5 +30,19 @@ public class SchemaSpyMojoTest {
     mojo.execute();
 
     assertTrue(true);
+  }
+
+  @Test
+  public void mavenGoalIsSchemaSpy() throws Exception {
+    // Arrange
+    final String goal = "schemaspy";
+    File baseDir = resources.getBasedir("project");
+    File pom = new File(baseDir, "pom.xml");
+
+    // Act
+    Mojo mojo = mojoRule.lookupMojo(goal, pom);
+
+    // Assert
+    assertTrue(mojo instanceof SchemaSpyMojo);
   }
 }
