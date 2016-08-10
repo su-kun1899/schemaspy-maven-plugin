@@ -16,6 +16,9 @@
                 <artifactId>schemaspy-maven-plugin</artifactId>
                 <configuration>
                     <databaseType>mysql</databaseType>
+                    <host>localhost</host>
+                    <user>root</user>
+                    <dbName>sample</dbName>
                 </configuration>
             </plugin>
         </plugins>

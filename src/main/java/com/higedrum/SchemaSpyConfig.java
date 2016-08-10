@@ -17,4 +17,5 @@ public interface SchemaSpyConfig {
 
   String getUser();
 
+  String getCharset();
 }

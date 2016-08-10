@@ -11,7 +11,7 @@ enum ParameterType {
   HOST("-host"),
   DB_NAME("-db"),
   USER("-u"),
-  CHAR_SET("-charset");
+  CHARSET("-charset");
 
   ParameterType(String parameter) {
     this.parameter = parameter;

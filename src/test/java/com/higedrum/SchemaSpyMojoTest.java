@@ -3,12 +3,14 @@ package com.higedrum;
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.testing.MojoRule;
 import org.apache.maven.plugin.testing.resources.TestResources;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.File;
-import java.io.IOException;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class SchemaSpyMojoTest {
@@ -21,15 +23,22 @@ public class SchemaSpyMojoTest {
 
   @Test
   public void customSettings() throws Exception {
-    // src/test/projects/project/pom.xml に書かれた設定を元にMojoインスタンスを作成
+    // Arrange
     File baseDir = resources.getBasedir("project");
     File pom = new File(baseDir, "pom.xml");
+    String databaseType = "mysql";
+    String host = "localhost";
+    String user = "root";
+    String dbName = "sample";
 
-    // 'schemaspy' ゴールを実行
-    Mojo mojo = mojoRule.lookupMojo("schemaspy", pom);
-    mojo.execute();
+    // Act
+    SchemaSpyMojo mojo = (SchemaSpyMojo) mojoRule.lookupMojo("schemaspy", pom);
 
-    assertTrue(true);
+    // Assert
+    assertThat(mojo.getDatabaseType(), is(databaseType));
+    assertThat(mojo.getHost(), is(host));
+    assertThat(mojo.getUser(), is(user));
+    assertThat(mojo.getDbName(), is(dbName));
   }
 
   @Test
@@ -44,5 +53,24 @@ public class SchemaSpyMojoTest {
 
     // Assert
     assertTrue(mojo instanceof SchemaSpyMojo);
+  }
+
+  @Ignore
+  @Test
+  public void generateHtml() throws Exception {
+    // ローカルにデータベースがないと動かないので、Ignoreしています
+
+    // Arrange
+    File baseDir = resources.getBasedir("project");
+    File pom = new File(baseDir, "pom.xml");
+
+    // Act
+    Mojo mojo = mojoRule.lookupMojo("schemaspy", pom);
+    mojo.execute();
+
+    // Assert
+    File file = new File("target/index.html");
+    assertTrue(file.exists());
+
   }
 }

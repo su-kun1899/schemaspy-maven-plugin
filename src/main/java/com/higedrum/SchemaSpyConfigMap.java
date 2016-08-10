@@ -14,25 +14,30 @@ class SchemaSpyConfigMap {
 
   private Map<ParameterType, String> configMap;
 
-  SchemaSpyConfigMap() {
-    configMap =  new LinkedHashMap<>();
-    configMap.put(ParameterType.DATABASE_TYPE, "mysql");
-    configMap.put(ParameterType.OUTPUT_DIRECTORY, "target");
-    configMap.put(ParameterType.HOST, "localhost");
-    configMap.put(ParameterType.DB_NAME, "sample");
-    configMap.put(ParameterType.USER, "root");
-    configMap.put(ParameterType.CHAR_SET, "utf-8");
+  SchemaSpyConfigMap(final SchemaSpyConfig config) {
+    configMap = new LinkedHashMap<>();
+    configMap.put(ParameterType.DATABASE_TYPE, config.getDatabaseType());
+    configMap.put(ParameterType.HOST, config.getHost());
+    configMap.put(ParameterType.DB_NAME, config.getDbName());
+    configMap.put(ParameterType.USER, config.getUser());
+    configMap.put(ParameterType.CHARSET, config.getCharset());
   }
 
-  public String put(ParameterType key, String value){
+  public String put(final ParameterType key, final String value) {
     return configMap.put(key, value);
   }
 
-  List<String> toArgumentStrings(){
+  public String get(final ParameterType key) {
+    return configMap.get(key);
+  }
+
+  List<String> toArgumentStrings() {
     List<String> argumentStrings = new ArrayList<>();
-    configMap.forEach((key, value)->{
+    configMap.forEach((key, value) -> {
       argumentStrings.add(key.getParameter());
-      argumentStrings.add(value);
+      if (value != null && !value.isEmpty()){
+        argumentStrings.add(value);
+      }
     });
 
     return argumentStrings;

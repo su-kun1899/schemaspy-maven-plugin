@@ -35,7 +35,7 @@ public class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   /**
    * Name of database to connect to
    */
-  @Parameter(defaultValue = "test", property = "dbName", required = true)
+  @Parameter(defaultValue = "sample", property = "dbName", required = true)
   private String dbName;
 
   /**
@@ -44,10 +44,13 @@ public class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   @Parameter(defaultValue = "root", property = "user", required = true)
   private String user;
 
+  @Parameter(defaultValue = "utf-8", property = "charset", required = true)
+  private String charset;
+
   public void execute() throws MojoExecutionException, MojoFailureException {
     getLog().info("schemaspy-maven-plugin start!");
 
-    SchemaSpy schemaSpy = new SchemaSpy(new SchemaSpyConfigMap());
+    SchemaSpy schemaSpy = new SchemaSpy(new SchemaSpyConfigMap(this));
     try {
       schemaSpy.execute();
     } catch (Exception e) {
@@ -75,5 +78,10 @@ public class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   @Override
   public String getUser() {
     return user;
+  }
+
+  @Override
+  public String getCharset() {
+    return charset;
   }
 }
