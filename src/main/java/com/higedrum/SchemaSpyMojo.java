@@ -45,7 +45,7 @@ public class SchemaSpyMojo extends AbstractMojo {
   private String user;
 
   public void execute() throws MojoExecutionException, MojoFailureException {
-    getLog().info("plugin start!");
+    getLog().info("schemaspy-maven-plugin start!");
 
     SchemaSpy schemaSpy = new SchemaSpy(new SchemaSpyConfigMap());
     try {
@@ -54,6 +54,6 @@ public class SchemaSpyMojo extends AbstractMojo {
       throw new MojoFailureException("Failed schemaSpy execute", e);
     }
 
-    getLog().info("plugin end!");
+    getLog().info("schemaspy-maven-plugin end!");
   }
 }
