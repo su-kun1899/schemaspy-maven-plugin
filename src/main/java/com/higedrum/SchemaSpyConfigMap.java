@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by koji-sudo on 2016/08/08.
+ * SchemaSpyに渡すパラメータ値を管理するMap
+ *
+ * Created by su-kun1899 on 2016/08/08.
  */
 public class SchemaSpyConfigMap {
 

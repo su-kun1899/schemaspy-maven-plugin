@@ -10,7 +10,9 @@ import org.apache.maven.plugins.annotations.Parameter;
 import java.io.File;
 
 /**
- * Created by koji-sudo on 2016/08/08.
+ * PluginのエントリポイントとなるMojo
+ *
+ * Created by su-kun1899 on 2016/08/08.
  */
 @Mojo(name = "schemaspy", defaultPhase = LifecyclePhase.SITE)
 public class SchemaSpyMojo extends AbstractMojo {

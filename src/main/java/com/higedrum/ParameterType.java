@@ -1,7 +1,9 @@
 package com.higedrum;
 
 /**
- * Created by koji-sudo on 2016/08/08.
+ * shemaSpyに渡すパラメータを管理するEnum
+ *
+ * Created by su-kun1899 on 2016/08/08.
  */
 public enum ParameterType {
   DATABASE_TYPE("-t"),
