@@ -109,6 +109,7 @@ public class DbConfigPanel extends JPanel {
      *
      * @return javax.swing.JComboBox
      */
+    @SuppressWarnings("unchecked")
     private JComboBox getDatabaseTypeSelector() {
         if (databaseTypeSelector == null) {
             DbTypeSelectorModel selectorModel = new DbTypeSelectorModel("ora");
