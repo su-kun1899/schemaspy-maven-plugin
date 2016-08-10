@@ -8,6 +8,8 @@ import org.junit.Test;
 
 import java.io.File;
 
+import static org.junit.Assert.assertTrue;
+
 public class SchemaSpyMojoTest {
 
   @Rule
@@ -25,5 +27,7 @@ public class SchemaSpyMojoTest {
     // 'schemaspy' ゴールを実行
     Mojo mojo = mojoRule.lookupMojo("schemaspy", pom);
     mojo.execute();
+
+    assertTrue(true);
   }
 }

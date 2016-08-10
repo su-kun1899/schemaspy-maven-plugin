@@ -48,7 +48,11 @@ public class SchemaSpyMojo extends AbstractMojo {
     getLog().info("plugin start!");
 
     SchemaSpy schemaSpy = new SchemaSpy(new SchemaSpyConfigMap());
-    schemaSpy.execute();
+    try {
+      schemaSpy.execute();
+    } catch (Exception e) {
+      throw new MojoFailureException("Failed schemaSpy execute", e);
+    }
 
     getLog().info("plugin end!");
   }
