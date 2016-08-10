@@ -5,7 +5,7 @@ package com.higedrum;
  *
  * Created by su-kun1899 on 2016/08/08.
  */
-public enum ParameterType {
+enum ParameterType {
   DATABASE_TYPE("-t"),
   OUTPUT_DIRECTORY("-o"),
   HOST("-host"),
