@@ -30,6 +30,7 @@ public class SchemaSpyMojoTest {
     String host = "localhost";
     String user = "root";
     String dbName = "sample";
+    String outputDirectory = "target";
 
     // Act
     SchemaSpyMojo mojo = (SchemaSpyMojo) mojoRule.lookupMojo("schemaspy", pom);
@@ -39,6 +40,7 @@ public class SchemaSpyMojoTest {
     assertThat(mojo.getHost(), is(host));
     assertThat(mojo.getUser(), is(user));
     assertThat(mojo.getDbName(), is(dbName));
+    assertThat(mojo.getOutputDirectory(), is(outputDirectory));
   }
 
   @Test

@@ -19,6 +19,7 @@
                     <host>localhost</host>
                     <user>root</user>
                     <dbName>sample</dbName>
+                    <outputDirectory>target</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>

@@ -38,6 +38,11 @@ public class SchemaSpyConfigMapTest {
       public String getCharset() {
         return "utf-8";
       }
+
+      @Override
+      public String getOutputDirectory() {
+        return "target";
+      }
     };
     List<String> expected = new ArrayList<>();
     expected.add("-t");
@@ -50,6 +55,8 @@ public class SchemaSpyConfigMapTest {
     expected.add("root");
     expected.add("-charset");
     expected.add("utf-8");
+    expected.add("-o");
+    expected.add("target");
 
     // Act
     SchemaSpyConfigMap schemaSpyConfigMap = new SchemaSpyConfigMap(testConfig);

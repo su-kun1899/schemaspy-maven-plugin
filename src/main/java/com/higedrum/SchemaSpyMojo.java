@@ -13,7 +13,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  * Created by su-kun1899 on 2016/08/08.
  */
 @Mojo(name = "schemaspy", defaultPhase = LifecyclePhase.SITE)
-public class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
+class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   /**
    * Type of database.
    */
@@ -44,6 +44,9 @@ public class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   @Parameter(defaultValue = "root", property = "user", required = true)
   private String user;
 
+  /**
+   * Charset
+   */
   @Parameter(defaultValue = "utf-8", property = "charset", required = true)
   private String charset;
 
@@ -83,5 +86,10 @@ public class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   @Override
   public String getCharset() {
     return charset;
+  }
+
+  @Override
+  public String getOutputDirectory() {
+    return outputDirectory;
   }
 }
