@@ -13,7 +13,7 @@ import org.apache.maven.plugins.annotations.Parameter;
  * Created by su-kun1899 on 2016/08/08.
  */
 @Mojo(name = "schemaspy", defaultPhase = LifecyclePhase.SITE)
-public class SchemaSpyMojo extends AbstractMojo {
+public class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   /**
    * Type of database.
    */
@@ -55,5 +55,25 @@ public class SchemaSpyMojo extends AbstractMojo {
     }
 
     getLog().info("schemaspy-maven-plugin end!");
+  }
+
+  @Override
+  public String getDatabaseType() {
+    return databaseType;
+  }
+
+  @Override
+  public String getHost() {
+    return host;
+  }
+
+  @Override
+  public String getDbName() {
+    return dbName;
+  }
+
+  @Override
+  public String getUser() {
+    return user;
   }
 }
