@@ -5,10 +5,10 @@
         </encoder>
     </appender>
 
-    <logger name="jdbc.sqltiming" level="DEBUG"/>
-    <logger name="jdbc.audit" level="DEBUG"/>
+    <logger name="jdbc.sqltiming" level="INFO"/>
+    <logger name="jdbc.audit" level="INFO"/>
 
-    <root level="debug">
+    <root level="INFO">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
