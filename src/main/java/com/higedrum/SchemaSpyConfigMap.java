@@ -21,7 +21,7 @@ class SchemaSpyConfigMap {
     configMap.put(ParameterType.DB_NAME, config.getDbName());
     configMap.put(ParameterType.USER, config.getUser());
     configMap.put(ParameterType.CHARSET, config.getCharset());
-    configMap.put(ParameterType.OUTPUT_DIRECTORY, config.getOutputDirectory());
+    configMap.put(ParameterType.OUTPUT_DIRECTORY, config.getOutputDirectory() + "/schemaspy" );
   }
 
   public String put(final ParameterType key, final String value) {
