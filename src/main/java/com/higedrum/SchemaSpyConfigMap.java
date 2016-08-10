@@ -11,11 +11,11 @@ import java.util.Map;
  *
  * Created by su-kun1899 on 2016/08/08.
  */
-public class SchemaSpyConfigMap {
+class SchemaSpyConfigMap {
 
   private Map<ParameterType, String> configMap;
 
-  public SchemaSpyConfigMap() {
+  SchemaSpyConfigMap() {
     configMap =  new LinkedHashMap<>();
     configMap.put(ParameterType.DATABASE_TYPE, "mysql");
     configMap.put(ParameterType.OUTPUT_DIRECTORY, "target");
@@ -29,7 +29,7 @@ public class SchemaSpyConfigMap {
     return configMap.put(key, value);
   }
 
-  public List<String> toArgumentStrings(){
+  List<String> toArgumentStrings(){
     List<String> argumentStrings = new ArrayList<>();
     configMap.forEach((key, value)->{
       argumentStrings.add(key.getParameter());
