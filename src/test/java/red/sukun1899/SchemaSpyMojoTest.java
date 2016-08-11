@@ -75,6 +75,23 @@ public class SchemaSpyMojoTest {
     // Assert
     File file = new File("target/index.html");
     assertTrue(file.exists());
+  }
 
+  @Ignore
+  @Test
+  public void generateHtmlWhenMinimumConfigration() throws Exception {
+    // ローカルにデータベースがないと動かないので、Ignoreしています
+
+    // Arrange
+    File baseDir = resources.getBasedir("minimum");
+    File pom = new File(baseDir, "pom.xml");
+
+    // Act
+    Mojo mojo = mojoRule.lookupMojo("schemaspy", pom);
+    mojo.execute();
+
+    // Assert
+    File file = new File("target/schemaSpy/index.html");
+    assertTrue(file.exists());
   }
 }
