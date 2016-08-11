@@ -7,6 +7,9 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * PluginのエントリポイントとなるMojo
  *
@@ -47,7 +50,7 @@ class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   /**
    * Password associated with that user.
    */
-  @Parameter(property = "password", required = false)
+  @Parameter(property = "password")
   private String password;
 
   /**
@@ -70,37 +73,44 @@ class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   }
 
   @Override
+  public Map<ParameterType, String> getConfigrations() {
+    Map<ParameterType, String> configrations = new LinkedHashMap<>();
+    configrations.put(ParameterType.DATABASE_TYPE, getDatabaseType());
+    configrations.put(ParameterType.HOST, getHost());
+    configrations.put(ParameterType.DB_NAME, getDbName());
+    configrations.put(ParameterType.USER, getUser());
+    configrations.put(ParameterType.PASSWORD, getPassword());
+    configrations.put(ParameterType.CHARSET, getCharset());
+    configrations.put(ParameterType.OUTPUT_DIRECTORY, getOutputDirectory());
+
+    return configrations;
+  }
+
   public String getDatabaseType() {
     return databaseType;
   }
 
-  @Override
+  public String getOutputDirectory() {
+    return outputDirectory;
+  }
+
   public String getHost() {
     return host;
   }
 
-  @Override
   public String getDbName() {
     return dbName;
   }
 
-  @Override
   public String getUser() {
     return user;
   }
 
-  @Override
   public String getPassword() {
     return password;
   }
 
-  @Override
   public String getCharset() {
     return charset;
-  }
-
-  @Override
-  public String getOutputDirectory() {
-    return outputDirectory;
   }
 }

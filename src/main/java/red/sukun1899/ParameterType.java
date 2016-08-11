@@ -14,7 +14,7 @@ enum ParameterType {
   PASSWORD("-p", false),
   CHARSET("-charset", false);
 
-  ParameterType(String parameter, boolean isRequired) {
+  ParameterType(final String parameter, final boolean isRequired) {
     this.parameter = parameter;
     this.isRequired = isRequired;
   }

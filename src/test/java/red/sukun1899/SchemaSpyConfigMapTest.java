@@ -1,13 +1,12 @@
 package red.sukun1899;
 
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugins.annotations.Parameter;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -15,85 +14,26 @@ import static org.junit.Assert.assertThat;
 public class SchemaSpyConfigMapTest {
 
   private static class TestConfig implements SchemaSpyConfig {
-    private String databaseType;
-    private String outputDirectory;
-    private String host;
-    private String dbName;
-    private String user;
-    private String password;
-    private String charset;
+    private Map<ParameterType, String> configMap;
 
     TestConfig() {
-      databaseType = "mysql";
-      outputDirectory = "target";
-      host = "localhost";
-      dbName = "sample";
-      user = "root";
-      password = "hogehoge";
-      charset = "utf-8";
+      configMap = new LinkedHashMap<>();
+      configMap.put(ParameterType.DATABASE_TYPE, "mysql");
+      configMap.put(ParameterType.HOST, "localhost");
+      configMap.put(ParameterType.DB_NAME, "sample");
+      configMap.put(ParameterType.USER, "root");
+      configMap.put(ParameterType.PASSWORD, "hogehoge");
+      configMap.put(ParameterType.CHARSET, "utf-8");
+      configMap.put(ParameterType.OUTPUT_DIRECTORY, "target");
     }
 
     @Override
-    public String getDatabaseType() {
-      return databaseType;
+    public Map<ParameterType, String> getConfigrations() {
+      return configMap;
     }
 
-    @Override
-    public String getHost() {
-      return host;
-    }
-
-    @Override
-    public String getDbName() {
-      return dbName;
-    }
-
-    @Override
-    public String getUser() {
-      return user;
-    }
-
-    @Override
-    public String getPassword() {
-      return password;
-    }
-
-    @Override
-    public String getCharset() {
-      return charset;
-    }
-
-    @Override
-    public String getOutputDirectory() {
-      return outputDirectory;
-    }
-
-    public void setDatabaseType(String databaseType) {
-      this.databaseType = databaseType;
-    }
-
-    public void setOutputDirectory(String outputDirectory) {
-      this.outputDirectory = outputDirectory;
-    }
-
-    public void setHost(String host) {
-      this.host = host;
-    }
-
-    public void setDbName(String dbName) {
-      this.dbName = dbName;
-    }
-
-    public void setUser(String user) {
-      this.user = user;
-    }
-
-    public void setPassword(String password) {
-      this.password = password;
-    }
-
-    public void setCharset(String charset) {
-      this.charset = charset;
+    String put(final ParameterType key, final String value) {
+      return configMap.put(key, value);
     }
   }
 
@@ -133,7 +73,7 @@ public class SchemaSpyConfigMapTest {
   @Test(expected = IllegalArgumentException.class)
   public void throwsExceptionWhenLackOfRequiredParameterValue() {
     // Arrange
-    testConfig.setUser(null);
+    testConfig.put(ParameterType.USER, null);
 
     // Act
     SchemaSpyConfigMap schemaSpyConfigMap = new SchemaSpyConfigMap(testConfig);

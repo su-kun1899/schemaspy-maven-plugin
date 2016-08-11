@@ -16,7 +16,7 @@ public class SchemaSpy {
 
   private SchemaSpyConfigMap configMap;
 
-  public SchemaSpy(SchemaSpyConfigMap configMap) {
+  public SchemaSpy(final SchemaSpyConfigMap configMap) {
     this.configMap = configMap;
   }
 
@@ -27,6 +27,13 @@ public class SchemaSpy {
 
     SchemaAnalyzer analyzer = new SchemaAnalyzer();
     analyzer.analyze(new Config(argv));
+  }
 
+  public SchemaSpyConfigMap getConfigMap() {
+    return configMap;
+  }
+
+  public void setConfigMap(SchemaSpyConfigMap configMap) {
+    this.configMap = configMap;
   }
 }

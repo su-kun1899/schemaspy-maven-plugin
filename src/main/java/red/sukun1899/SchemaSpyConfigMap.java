@@ -16,13 +16,16 @@ class SchemaSpyConfigMap {
 
   SchemaSpyConfigMap(final SchemaSpyConfig config) {
     configMap = new LinkedHashMap<>();
-    put(ParameterType.DATABASE_TYPE, config.getDatabaseType());
-    put(ParameterType.HOST, config.getHost());
-    put(ParameterType.DB_NAME, config.getDbName());
-    put(ParameterType.USER, config.getUser());
-    put(ParameterType.PASSWORD, config.getPassword());
-    put(ParameterType.CHARSET, config.getCharset());
-    put(ParameterType.OUTPUT_DIRECTORY, config.getOutputDirectory() + "/schemaspy" );
+    config.getConfigrations().forEach((key, value) -> {
+      switch (key) {
+        case OUTPUT_DIRECTORY:
+          put(key, value + "/schemaspy");
+          break;
+        default:
+          put(key, value);
+          break;
+      }
+    });
   }
 
   public String put(final ParameterType key, final String value) {
@@ -41,7 +44,7 @@ class SchemaSpyConfigMap {
     List<String> argumentStrings = new ArrayList<>();
     configMap.forEach((key, value) -> {
       argumentStrings.add(key.getParameter());
-      if (value != null && !value.isEmpty()){
+      if (value != null && !value.isEmpty()) {
         argumentStrings.add(value);
       }
     });
@@ -51,5 +54,13 @@ class SchemaSpyConfigMap {
 
   private boolean validateRequiredValue(final ParameterType key, final String value) {
     return key.isRequired() && (value == null || value.isEmpty());
+  }
+
+  public Map<ParameterType, String> getConfigMap() {
+    return configMap;
+  }
+
+  public void setConfigMap(Map<ParameterType, String> configMap) {
+    this.configMap = configMap;
   }
 }
