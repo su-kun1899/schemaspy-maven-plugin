@@ -30,13 +30,13 @@ class SchemaSpyConfigMap {
         break;
     }
 
-    if (null == pushValue) {
-      // ignore empty value
-      return null;
-    }
-
     if (validateRequiredValue(key, pushValue)) {
       throw new IllegalArgumentException(key + " is required. But value is empty.");
+    }
+
+    if (pushValue == null) {
+      // ignore empty value
+      return null;
     }
 
     return configMap.put(key, pushValue);
