@@ -1,4 +1,4 @@
-package com.higedrum;
+package red.sukun1899;
 
 /**
  * SchemaSpyの設定用Interface

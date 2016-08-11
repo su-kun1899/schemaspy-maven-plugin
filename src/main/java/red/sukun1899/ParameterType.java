@@ -1,4 +1,4 @@
-package com.higedrum;
+package red.sukun1899;
 
 /**
  * shemaSpyに渡すパラメータを管理するEnum

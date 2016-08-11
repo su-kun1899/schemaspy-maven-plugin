@@ -1,4 +1,4 @@
-package com.higedrum;
+package red.sukun1899;
 
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.testing.MojoRule;

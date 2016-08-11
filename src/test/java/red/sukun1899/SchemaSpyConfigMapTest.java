@@ -1,4 +1,4 @@
-package com.higedrum;
+package red.sukun1899;
 
 import org.junit.Test;
 
@@ -56,7 +56,7 @@ public class SchemaSpyConfigMapTest {
     expected.add("-charset");
     expected.add("utf-8");
     expected.add("-o");
-    expected.add("target");
+    expected.add("target/schemaspy");
 
     // Act
     SchemaSpyConfigMap schemaSpyConfigMap = new SchemaSpyConfigMap(testConfig);

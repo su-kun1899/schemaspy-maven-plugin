@@ -1,4 +1,4 @@
-package com.higedrum;
+package red.sukun1899;
 
 import net.sourceforge.schemaspy.Config;
 import net.sourceforge.schemaspy.SchemaAnalyzer;
