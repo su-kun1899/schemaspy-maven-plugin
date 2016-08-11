@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,5 +91,55 @@ public class SchemaSpyConfigMapTest {
 
     // Assert
     assertThat(schemaSpyConfigMap.get(ParameterType.CHARSET), nullValue());
+  }
+
+  @Test
+  public void defaultOutputDirectory() {
+    // Arrange
+    testConfig.put(ParameterType.OUTPUT_DIRECTORY, null);
+
+    // Act
+    SchemaSpyConfigMap schemaSpyConfigMap = new SchemaSpyConfigMap(testConfig);
+
+    // Assert
+    assertThat(schemaSpyConfigMap.get(ParameterType.OUTPUT_DIRECTORY), is("target/schemaspy"));
+  }
+
+  @Test
+  public void mapToMinimuSchemaSpyArguments() {
+    // Arrange
+    SchemaSpyConfig config = new SchemaSpyConfig() {
+      @Override
+      public Map<ParameterType, String> getConfigrations() {
+        Map<ParameterType, String> configrations = new LinkedHashMap<>();
+        configrations.put(ParameterType.DATABASE_TYPE, "mysql");
+        configrations.put(ParameterType.HOST, "localhost");
+        configrations.put(ParameterType.DB_NAME, "sample");
+        configrations.put(ParameterType.USER, "root");
+        configrations.put(ParameterType.PASSWORD, null);
+        configrations.put(ParameterType.CHARSET, null);
+        configrations.put(ParameterType.OUTPUT_DIRECTORY, null);
+
+        return configrations;
+      }
+    };
+
+    List<String> expected = new ArrayList<>();
+    expected.add("-t");
+    expected.add("mysql");
+    expected.add("-host");
+    expected.add("localhost");
+    expected.add("-db");
+    expected.add("sample");
+    expected.add("-u");
+    expected.add("root");
+    expected.add("-o");
+    expected.add("target/schemaspy");
+
+    // Act
+    SchemaSpyConfigMap schemaSpyConfigMap = new SchemaSpyConfigMap(config);
+
+    // Assert
+    assertThat(schemaSpyConfigMap.toArgumentStrings(), is(expected));
   }
 }

@@ -16,24 +16,30 @@ class SchemaSpyConfigMap {
 
   SchemaSpyConfigMap(final SchemaSpyConfig config) {
     configMap = new LinkedHashMap<>();
-    config.getConfigrations().forEach((key, value) -> {
-      switch (key) {
-        case OUTPUT_DIRECTORY:
-          put(key, value + "/schemaspy");
-          break;
-        default:
-          put(key, value);
-          break;
-      }
-    });
+    config.getConfigrations().forEach(this::put);
   }
 
   public String put(final ParameterType key, final String value) {
-    if (validateRequiredValue(key, value)) {
+    String pushValue = value;
+    switch (key) {
+      case OUTPUT_DIRECTORY:
+        pushValue = value == null ? "target" : value;
+        pushValue += "/schemaspy";
+        break;
+      default:
+        break;
+    }
+
+    if (null == pushValue) {
+      // ignore empty value
+      return null;
+    }
+
+    if (validateRequiredValue(key, pushValue)) {
       throw new IllegalArgumentException(key + " is required. But value is empty.");
     }
 
-    return configMap.put(key, value);
+    return configMap.put(key, pushValue);
   }
 
   public String get(final ParameterType key) {
