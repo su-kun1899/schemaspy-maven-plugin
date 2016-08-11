@@ -45,6 +45,12 @@ class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   private String user;
 
   /**
+   * Password associated with that user.
+   */
+  @Parameter(property = "password", required = false)
+  private String password;
+
+  /**
    * Charset
    */
   @Parameter(defaultValue = "utf-8", property = "charset", required = true)
@@ -81,6 +87,11 @@ class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   @Override
   public String getUser() {
     return user;
+  }
+
+  @Override
+  public String getPassword() {
+    return password;
   }
 
   @Override

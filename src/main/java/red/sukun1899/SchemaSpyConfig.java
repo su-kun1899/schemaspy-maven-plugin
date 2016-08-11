@@ -15,6 +15,8 @@ interface SchemaSpyConfig {
 
   String getUser();
 
+  String getPassword();
+
   String getCharset();
 
   String getOutputDirectory();
