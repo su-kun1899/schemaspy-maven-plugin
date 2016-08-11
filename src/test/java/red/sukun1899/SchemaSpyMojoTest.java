@@ -31,6 +31,7 @@ public class SchemaSpyMojoTest {
     String user = "root";
     String dbName = "sample";
     String outputDirectory = "target";
+    String password = "hogehoge";
 
     // Act
     SchemaSpyMojo mojo = (SchemaSpyMojo) mojoRule.lookupMojo("schemaspy", pom);
@@ -41,6 +42,7 @@ public class SchemaSpyMojoTest {
     assertThat(mojo.getUser(), is(user));
     assertThat(mojo.getDbName(), is(dbName));
     assertThat(mojo.getOutputDirectory(), is(outputDirectory));
+    assertThat(mojo.getPassword(), is(password));
   }
 
   @Test

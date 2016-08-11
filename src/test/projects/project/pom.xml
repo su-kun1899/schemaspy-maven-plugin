@@ -12,12 +12,13 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.higedrum</groupId>
+                <groupId>red.sukun1899</groupId>
                 <artifactId>schemaspy-maven-plugin</artifactId>
                 <configuration>
                     <databaseType>mysql</databaseType>
                     <host>localhost</host>
                     <user>root</user>
+                    <password>hogehoge</password>
                     <dbName>sample</dbName>
                     <outputDirectory>target</outputDirectory>
                 </configuration>

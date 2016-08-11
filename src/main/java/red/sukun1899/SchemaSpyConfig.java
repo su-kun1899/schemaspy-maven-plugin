@@ -1,7 +1,5 @@
 package red.sukun1899;
 
-import com.sun.tools.corba.se.idl.PragmaEntry;
-
 import java.util.Map;
 
 /**

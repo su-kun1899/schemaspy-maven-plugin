@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class SchemaSpyConfigMapTest {
@@ -77,5 +78,17 @@ public class SchemaSpyConfigMapTest {
 
     // Act
     SchemaSpyConfigMap schemaSpyConfigMap = new SchemaSpyConfigMap(testConfig);
+  }
+
+  @Test
+  public void ignoreEmptyOptionalParameter() {
+    // Arrange
+    testConfig.put(ParameterType.CHARSET, null);
+
+    // Act
+    SchemaSpyConfigMap schemaSpyConfigMap = new SchemaSpyConfigMap(testConfig);
+
+    // Assert
+    assertThat(schemaSpyConfigMap.get(ParameterType.CHARSET), nullValue());
   }
 }
