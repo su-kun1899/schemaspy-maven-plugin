@@ -5,6 +5,7 @@ database:
   post:
     - mysql -u root --execute "create database if not exists test character set utf8"
     - mysql -u root test < src/test/resources/test.sql
+    - mysql -u root < src/test/resources/user.sql
 dependencies:
   override:
     - mvn dependency:resolve
