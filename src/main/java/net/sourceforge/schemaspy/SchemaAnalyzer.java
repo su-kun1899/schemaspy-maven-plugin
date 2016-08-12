@@ -404,6 +404,7 @@ public class SchemaAnalyzer {
             // 'try' to make some memory available for the sorting process
             // (some people have run out of memory while RI sorting tables)
             builder = null;
+            connection.close();
             connection = null;
             document = null;
             factory = null;

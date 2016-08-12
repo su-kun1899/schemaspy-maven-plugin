@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +21,7 @@ public class SchemaSpyConfigMapTest {
       configMap = new LinkedHashMap<>();
       configMap.put(ParameterType.DATABASE_TYPE, "mysql");
       configMap.put(ParameterType.HOST, "localhost");
-      configMap.put(ParameterType.DB_NAME, "sample");
+      configMap.put(ParameterType.DB_NAME, "test");
       configMap.put(ParameterType.USER, "root");
       configMap.put(ParameterType.PASSWORD, "hogehoge");
       configMap.put(ParameterType.CHARSET, "utf-8");
@@ -55,7 +54,7 @@ public class SchemaSpyConfigMapTest {
     expected.add("-host");
     expected.add("localhost");
     expected.add("-db");
-    expected.add("sample");
+    expected.add("test");
     expected.add("-u");
     expected.add("root");
     expected.add("-p");
@@ -108,20 +107,17 @@ public class SchemaSpyConfigMapTest {
   @Test
   public void mapToMinimuSchemaSpyArguments() {
     // Arrange
-    SchemaSpyConfig config = new SchemaSpyConfig() {
-      @Override
-      public Map<ParameterType, String> getConfigrations() {
-        Map<ParameterType, String> configrations = new LinkedHashMap<>();
-        configrations.put(ParameterType.DATABASE_TYPE, "mysql");
-        configrations.put(ParameterType.HOST, "localhost");
-        configrations.put(ParameterType.DB_NAME, "sample");
-        configrations.put(ParameterType.USER, "root");
-        configrations.put(ParameterType.PASSWORD, null);
-        configrations.put(ParameterType.CHARSET, null);
-        configrations.put(ParameterType.OUTPUT_DIRECTORY, null);
+    SchemaSpyConfig config = () -> {
+      Map<ParameterType, String> configrations = new LinkedHashMap<>();
+      configrations.put(ParameterType.DATABASE_TYPE, "mysql");
+      configrations.put(ParameterType.HOST, "localhost");
+      configrations.put(ParameterType.DB_NAME, "test");
+      configrations.put(ParameterType.USER, "root");
+      configrations.put(ParameterType.PASSWORD, null);
+      configrations.put(ParameterType.CHARSET, null);
+      configrations.put(ParameterType.OUTPUT_DIRECTORY, null);
 
-        return configrations;
-      }
+      return configrations;
     };
 
     List<String> expected = new ArrayList<>();
@@ -130,7 +126,7 @@ public class SchemaSpyConfigMapTest {
     expected.add("-host");
     expected.add("localhost");
     expected.add("-db");
-    expected.add("sample");
+    expected.add("test");
     expected.add("-u");
     expected.add("root");
     expected.add("-o");
