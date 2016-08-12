@@ -5,7 +5,7 @@
 
     <groupId>red.sukun1899</groupId>
     <artifactId>schemaspy-maven-plugin</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>SchemaSpy Maven Plugin</name>
@@ -29,8 +29,7 @@
         <java.version>1.8</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
-        <github.repo.directory>/Users/koji-sudo/Dev/su-kun1899.github.io/mvn-repo
-        </github.repo.directory>
+        <github.repo.directory>/Users/koji-sudo/Dev/maven</github.repo.directory>
     </properties>
 
     <distributionManagement>
