@@ -71,7 +71,7 @@ public class SchemaSpyMojoTest {
     mojo.execute();
 
     // Assert
-    File file = new File("target/schemaSpy/index.html");
+    File file = new File("target/schemaspy/index.html");
     assertTrue(file.exists());
   }
 
@@ -88,7 +88,7 @@ public class SchemaSpyMojoTest {
     mojo.execute();
 
     // Assert
-    File file = new File("target/schemaSpy/index.html");
+    File file = new File("target/schemaspy/index.html");
     assertTrue(file.exists());
   }
 }
