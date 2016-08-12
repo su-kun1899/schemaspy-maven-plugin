@@ -10,7 +10,34 @@
 
     <name>SchemaSpy Maven Plugin</name>
 
+    <scm>
+        <url>https://github.com/su-kun1899/schemaspy-maven-plugin</url>
+        <connection>scm:git:git@github.com:su-kun1899/schemaspy-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:su-kun1899/schemaspy-maven-plugin.git
+        </developerConnection>
+    </scm>
     <url>https://github.com/su-kun1899/schemaspy-maven-plugin</url>
+    <description>Maven Plugin For SchemaSpy</description>
+
+    <developers>
+        <developer>
+            <id>su-kun1899</id>
+            <name>Koji Sudo</name>
+            <email>higedrum.coz@gmail.com</email>
+            <url>https://twitter.com/su_kun_1899</url>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <repositories>
         <repository>
@@ -31,14 +58,6 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <github.repo.directory>/Users/koji-sudo/Dev/maven</github.repo.directory>
     </properties>
-
-    <distributionManagement>
-        <repository>
-            <id>internal.repo</id>
-            <name>Local Github Pages</name>
-            <url>file://${github.repo.directory}</url>
-        </repository>
-    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -118,4 +137,55 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.7</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
