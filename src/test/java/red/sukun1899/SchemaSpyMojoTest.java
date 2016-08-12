@@ -3,7 +3,6 @@ package red.sukun1899;
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.testing.MojoRule;
 import org.apache.maven.plugin.testing.resources.TestResources;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -28,8 +27,8 @@ public class SchemaSpyMojoTest {
     File pom = new File(baseDir, "pom.xml");
     String databaseType = "mysql";
     String host = "localhost";
-    String user = "root";
-    String dbName = "sample";
+    String user = "test_user";
+    String dbName = "test";
     String outputDirectory = "target";
     String password = "hogehoge";
 
@@ -59,7 +58,6 @@ public class SchemaSpyMojoTest {
     assertTrue(mojo instanceof SchemaSpyMojo);
   }
 
-  @Ignore
   @Test
   public void generateHtml() throws Exception {
     // ローカルにデータベースがないと動かないので、Ignoreしています
@@ -73,11 +71,10 @@ public class SchemaSpyMojoTest {
     mojo.execute();
 
     // Assert
-    File file = new File("target/index.html");
+    File file = new File("target/schemaSpy/index.html");
     assertTrue(file.exists());
   }
 
-  @Ignore
   @Test
   public void generateHtmlWhenMinimumConfigration() throws Exception {
     // ローカルにデータベースがないと動かないので、Ignoreしています

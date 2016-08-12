@@ -17,9 +17,9 @@
                 <configuration>
                     <databaseType>mysql</databaseType>
                     <host>localhost</host>
-                    <user>root</user>
+                    <user>test_user</user>
                     <password>hogehoge</password>
-                    <dbName>sample</dbName>
+                    <dbName>test</dbName>
                     <outputDirectory>target</outputDirectory>
                 </configuration>
             </plugin>
