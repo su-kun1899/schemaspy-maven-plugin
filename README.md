@@ -5,6 +5,19 @@ SchemaSpyはDatabaseのMetaデータをグラフィカルなHTMLに出力し、�
 
 Maven Pluginとして実行可能にすることで、Maven Project との親和性を高めることを目的としています。
 
+## Description
+
+このプラグインは、任意のデータベースにあくせすし、メタ情報を取得します。
+その情報を元に、グラフィカルなHTMLを出力します。
+メタ情報とは下記のようなものを指します。
+
+- Tables
+- Columns
+- Indexes
+- Constraints
+- RelationShips
+- etc
+
 ```
 mvn -e com.higedrum:schemaspy-maven-plugin:schemaspy
 ```
