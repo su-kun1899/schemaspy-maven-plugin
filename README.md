@@ -7,7 +7,7 @@ Maven Pluginとして実行可能にすることで、Maven Project との親和
 
 ## Description
 
-このプラグインは、任意のデータベースにあくせすし、メタ情報を取得します。
+このプラグインは、任意のデータベースにアクセスし、メタ情報を取得します。
 その情報を元に、グラフィカルなHTMLを出力します。
 メタ情報とは下記のようなものを指します。
 
@@ -18,9 +18,56 @@ Maven Pluginとして実行可能にすることで、Maven Project との親和
 - RelationShips
 - etc
 
+## Requirement
+
+### Java versions
+
+schemaspy-maven-plugin requires java 1.8.x
+
+### Maven versions
+
+schemaspy-maven-plugin requires maven 3.3.x
+
+## Usage
+
+### pom.xml setting
+
+```xml
+<project ...>
+    ...
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>red.sukun1899</groupId>
+            <artifactId>schemaspy-maven-plugin</artifactId>
+            <version>1.0.2</version>
+            <configuration>
+              <databaseType>mysql</databaseType>
+              <host>yourDatabaseHost</host>
+              <user>yourDatabaseUser</user>
+              <password>yourDatabasePassword</password>
+              <dbName>yourDatabaseName</dbName>
+              <outputDirectory>pathForGeneretedHtml</outputDirectory>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+</project>
 ```
-mvn -e com.higedrum:schemaspy-maven-plugin:schemaspy
+
+### Generate Html
+
 ```
+mvn red.sukun1899:schemaspy-maven-plugin:schemaspy
+```
+
+### Sample Project
+
+see [schemaspy-plugin-sample](https://github.com/su-kun1899/schemaspy-plugin-sample)
+
+### Caution
+
+- Currently Supported Only MySQL
 
 # Release
 
