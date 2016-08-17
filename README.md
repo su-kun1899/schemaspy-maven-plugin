@@ -1,15 +1,14 @@
 # schemaspy-maven-plugin
 
-[SchemaSpy](http://schemaspy.sourceforge.net/) を実行するためのMaven Pluginです。  
-SchemaSpyはDatabaseのMetaデータをグラフィカルなHTMLに出力し、データベースの構造を可視化します。
+schemaspy-maven-plugin is maven plugin for [SchemaSpy](http://schemaspy.sourceforge.net/).  
 
-Maven Pluginとして実行可能にすることで、Maven Project との親和性を高めることを目的としています。
+SchemaSpy is graphical database schema metadata browser.
+It is a Java-based tool that analyzes the metadata of a schema in a database, 
+and generates a visual representation of it in html format.
 
-## Description
+This plugin may help some maven projects and developers.
 
-このプラグインは、任意のデータベースにアクセスし、メタ情報を取得します。  
-その情報を元に、グラフィカルなHTMLを出力します。  
-メタ情報とは下記のようなものを指します。
+Metadata are...
 
 - Tables
 - Columns
@@ -68,8 +67,8 @@ see [schemaspy-plugin-sample](https://github.com/su-kun1899/schemaspy-plugin-sam
 
 # Release
 
-下記は管理者向けの手順です。  
-Maven Centralにdeployするための手順です。
+This is the item for project owners.   
+It is how to deploy to maven central repository.
 
 ```
 mvn clean deploy -DperformRelease=true -s settings.xml -P release
