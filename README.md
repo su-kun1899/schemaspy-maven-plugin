@@ -1,5 +1,9 @@
 # schemaspy-maven-plugin
-schemaspy-maven-plugin
+
+[SchemaSpy](http://schemaspy.sourceforge.net/) を実行するためのMaven Pluginです。
+SchemaSpyはDatabaseのMetaデータをグラフィカルなHTMLに出力し、データベースの構造を可視化します。
+
+Maven Pluginとして実行可能にすることで、Maven Project との親和性を高めることを目的としています。
 
 ```
 mvn -e com.higedrum:schemaspy-maven-plugin:schemaspy
