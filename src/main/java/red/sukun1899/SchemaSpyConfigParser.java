@@ -37,8 +37,8 @@ class SchemaSpyConfigParser {
         throw new IllegalArgumentException(key + " is required. But value is empty.");
       }
 
-      configs.add(key.getParameter());
-      if (value != null && !value.isEmpty()) {
+      if (value != null) {
+        configs.add(key.getParameter());
         configs.add(value);
       }
     });
