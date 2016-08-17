@@ -1,17 +1,10 @@
 package red.sukun1899;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.function.BiConsumer;
-import java.util.function.Supplier;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static javafx.scene.input.KeyCode.R;
+import java.util.Optional;
 
 /**
  * SchemaSpyに渡すパラメータ用のParser
@@ -27,27 +20,28 @@ class SchemaSpyConfigParser {
   }
 
   String[] parse() {
+    validate(getConfig());
     List<String> configs = toList(getConfig());
-    return configs.toArray(new String[configs.size()]);
+    return toList(getConfig()).toArray(new String[configs.size()]);
+  }
+
+  private void validate(SchemaSpyConfig config) {
+    config.getConfigrations().entrySet().stream()
+        .filter(entry -> entry.getKey().isRequired())
+        .filter(entry -> entry.getValue() == null)
+        .filter(entry -> entry.getKey().getDefaultValue() == null)
+        .findFirst()
+        .ifPresent(entry -> {
+          throw new IllegalArgumentException(entry.getKey() + " is " +
+              "required. " +
+              "But value is empty.");
+        });
   }
 
   private List<String> toList(final SchemaSpyConfig config) {
     return config.getConfigrations().entrySet().stream()
-        .map(e -> {
-          if (e.getKey().equals(ParameterType.OUTPUT_DIRECTORY)){
-            String value = e.getValue();
-            value = value == null ? "target" : value;
-            value += "/schemaspy";
-            e.setValue(value);
-          }
-          return e;
-        })
-        .map(e -> {
-          if (isLackOfRequiredValue(e.getKey(), e.getValue())) {
-            throw new IllegalArgumentException(e.getKey() + " is required. But value is empty.");
-          }
-          return e;
-        })
+        .map(entry -> new AbstractMap.SimpleEntry<>(entry.getKey(), (entry.getValue() == null ?
+            entry.getKey().getDefaultValue() : entry.getValue())))
         .filter(e -> e.getValue() != null)
         .collect(ArrayList::new,
             (list, entry) -> {
