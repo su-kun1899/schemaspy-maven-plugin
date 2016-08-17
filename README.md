@@ -1,11 +1,74 @@
 # schemaspy-maven-plugin
-schemaspy-maven-plugin
+
+schemaspy-maven-plugin is maven plugin for [SchemaSpy](http://schemaspy.sourceforge.net/).  
+
+SchemaSpy is graphical database schema metadata browser.
+It is a Java-based tool that analyzes the metadata of a schema in a database, 
+and generates a visual representation of it in html format.
+
+This plugin may help some maven projects and developers.
+
+Metadata are...
+
+- Tables
+- Columns
+- Indexes
+- Constraints
+- RelationShips
+- etc
+
+## Requirement
+
+schemaspy-maven-plugin requires... 
+
+- java 1.8.x
+- maven 3.3.x
+
+## Usage
+
+### pom.xml setting
+
+```xml
+<project ...>
+    ...
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>red.sukun1899</groupId>
+            <artifactId>schemaspy-maven-plugin</artifactId>
+            <version>1.0.2</version>
+            <configuration>
+              <databaseType>mysql</databaseType>
+              <host>yourDatabaseHost</host>
+              <user>yourDatabaseUser</user>
+              <password>yourDatabasePassword</password>
+              <dbName>yourDatabaseName</dbName>
+              <outputDirectory>pathForGeneretedHtml</outputDirectory>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+</project>
+```
+
+### Generate Html
 
 ```
-mvn -e com.higedrum:schemaspy-maven-plugin:schemaspy
+mvn red.sukun1899:schemaspy-maven-plugin:schemaspy
 ```
+
+### Sample Project
+
+see [schemaspy-plugin-sample](https://github.com/su-kun1899/schemaspy-plugin-sample)
+
+### Caution
+
+- Currently Supported Only MySQL
 
 # Release
+
+This is the item for project owners.   
+It is how to deploy to maven central repository.
 
 ```
 mvn clean deploy -DperformRelease=true -s settings.xml -P release
