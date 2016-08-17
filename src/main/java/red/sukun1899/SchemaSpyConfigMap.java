@@ -10,6 +10,7 @@ import java.util.Map;
  *
  * Created by su-kun1899 on 2016/08/08.
  */
+@Deprecated
 class SchemaSpyConfigMap {
 
   private Map<ParameterType, String> configMap;
