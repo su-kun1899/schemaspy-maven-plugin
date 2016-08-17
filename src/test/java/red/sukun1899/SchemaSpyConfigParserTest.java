@@ -62,7 +62,7 @@ public class SchemaSpyConfigParserTest {
     configList.add("-charset");
     configList.add("utf-8");
     configList.add("-o");
-    configList.add("target/schemaspy");
+    configList.add("target");
     String[] expected = configList.toArray(new String[configList.size()]);
 
     // Act

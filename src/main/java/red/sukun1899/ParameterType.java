@@ -7,7 +7,12 @@ package red.sukun1899;
  */
 enum ParameterType {
   DATABASE_TYPE("-t", false),
-  OUTPUT_DIRECTORY("-o", true),
+  OUTPUT_DIRECTORY("-o", true){
+    @Override
+    public String getDefaultValue(){
+      return "target/schemaspy";
+    }
+  },
   HOST("-host", false),
   DB_NAME("-db", true),
   USER("-u", true),
@@ -26,6 +31,10 @@ enum ParameterType {
   }
 
   private boolean isRequired;
+
+  public String getDefaultValue() {
+    return null;
+  }
 
   public String getParameter() {
     return parameter;

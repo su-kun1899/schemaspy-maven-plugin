@@ -1,7 +1,10 @@
 package red.sukun1899;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * SchemaSpyに渡すパラメータ用のParser
@@ -17,33 +20,35 @@ class SchemaSpyConfigParser {
   }
 
   String[] parse() {
+    validate(getConfig());
     List<String> configs = toList(getConfig());
-    return configs.toArray(new String[configs.size()]);
+    return toList(getConfig()).toArray(new String[configs.size()]);
+  }
+
+  private void validate(SchemaSpyConfig config) {
+    config.getConfigrations().entrySet().stream()
+        .filter(entry -> entry.getKey().isRequired())
+        .filter(entry -> entry.getValue() == null)
+        .filter(entry -> entry.getKey().getDefaultValue() == null)
+        .findFirst()
+        .ifPresent(entry -> {
+          throw new IllegalArgumentException(entry.getKey() + " is " +
+              "required. " +
+              "But value is empty.");
+        });
   }
 
   private List<String> toList(final SchemaSpyConfig config) {
-    List<String> configs = new ArrayList<>();
-    config.getConfigrations().forEach((key, value) -> {
-      switch (key) {
-        case OUTPUT_DIRECTORY:
-          value = value == null ? "target" : value;
-          value += "/schemaspy";
-          break;
-        default:
-          break;
-      }
+    return config.getConfigrations().entrySet().stream()
+        .map(entry -> new AbstractMap.SimpleEntry<>(entry.getKey(), (entry.getValue() == null ?
+            entry.getKey().getDefaultValue() : entry.getValue())))
+        .filter(e -> e.getValue() != null)
+        .collect(ArrayList::new,
+            (list, entry) -> {
+              list.add(entry.getKey().getParameter());
+              list.add(entry.getValue());
+            }, ArrayList::addAll);
 
-      if (isLackOfRequiredValue(key, value)) {
-        throw new IllegalArgumentException(key + " is required. But value is empty.");
-      }
-
-      if (value != null) {
-        configs.add(key.getParameter());
-        configs.add(value);
-      }
-    });
-
-    return configs;
   }
 
   private boolean isLackOfRequiredValue(final ParameterType key, final String value) {
