@@ -3,8 +3,6 @@ package red.sukun1899;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 /**
  * SchemaSpyに渡すパラメータ用のParser
@@ -25,7 +23,7 @@ class SchemaSpyConfigParser {
     return toList(getConfig()).toArray(new String[configs.size()]);
   }
 
-  private void validate(SchemaSpyConfig config) {
+  private void validate(final SchemaSpyConfig config) {
     config.getConfigrations().entrySet().stream()
         .filter(entry -> entry.getKey().isRequired())
         .filter(entry -> entry.getValue() == null)
@@ -51,11 +49,7 @@ class SchemaSpyConfigParser {
 
   }
 
-  private boolean isLackOfRequiredValue(final ParameterType key, final String value) {
-    return key.isRequired() && (value == null || value.isEmpty());
-  }
-
-  SchemaSpyConfig getConfig() {
+  public SchemaSpyConfig getConfig() {
     return config;
   }
 }
