@@ -71,6 +71,9 @@ see [schemaspy-plugin-sample](https://github.com/su-kun1899/schemaspy-plugin-sam
 
 # Release
 
+下記は管理者向けの手順です。
+Maven Centralにdeployするための手順です。
+
 ```
 mvn clean deploy -DperformRelease=true -s settings.xml -P release
 ```
