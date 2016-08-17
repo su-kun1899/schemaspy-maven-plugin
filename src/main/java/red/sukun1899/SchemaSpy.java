@@ -3,8 +3,6 @@ package red.sukun1899;
 import net.sourceforge.schemaspy.Config;
 import net.sourceforge.schemaspy.SchemaAnalyzer;
 
-import java.util.List;
-
 /**
  * SchemaSpyのエントリポイントとなるクラス
  *
@@ -14,26 +12,24 @@ import java.util.List;
  */
 public class SchemaSpy {
 
-  private SchemaSpyConfigMap configMap;
+  private SchemaSpyConfig config;
 
-  public SchemaSpy(final SchemaSpyConfigMap configMap) {
-    this.configMap = configMap;
+  public SchemaSpy(final SchemaSpyConfig config) {
+    this.config = config;
   }
 
   void execute() throws Exception {
-
-    List<String> stringArgs = configMap.toArgumentStrings();
-    String[] argv = stringArgs.toArray(new String[stringArgs.size()]);
+    String[] argv = new SchemaSpyConfigParser(getConfig()).parse();
 
     SchemaAnalyzer analyzer = new SchemaAnalyzer();
     analyzer.analyze(new Config(argv));
   }
 
-  public SchemaSpyConfigMap getConfigMap() {
-    return configMap;
+  public SchemaSpyConfig getConfig() {
+    return config;
   }
 
-  public void setConfigMap(SchemaSpyConfigMap configMap) {
-    this.configMap = configMap;
+  public void setConfig(SchemaSpyConfig config) {
+    this.config = config;
   }
 }

@@ -62,7 +62,7 @@ class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   public void execute() throws MojoExecutionException, MojoFailureException {
     getLog().info("schemaspy-maven-plugin start!");
 
-    SchemaSpy schemaSpy = new SchemaSpy(new SchemaSpyConfigMap(this));
+    SchemaSpy schemaSpy = new SchemaSpy(this);
     try {
       schemaSpy.execute();
     } catch (Exception e) {
