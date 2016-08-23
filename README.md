@@ -36,7 +36,7 @@ schemaspy-maven-plugin requires...
           <plugin>
             <groupId>red.sukun1899</groupId>
             <artifactId>schemaspy-maven-plugin</artifactId>
-            <version>1.0.2</version>
+            <version>1.1.0</version>
             <configuration>
               <databaseType>mysql</databaseType>
               <host>yourDatabaseHost</host>
@@ -71,7 +71,9 @@ This is the item for project owners.
 It is how to deploy to maven central repository.
 
 ```
+git tag -a vX.X.X
 mvn clean deploy -DperformRelease=true -s settings.xml -P release
+git push origin vX.X.X
 ```
 
 - Deploy snapshot artifacts into repository
