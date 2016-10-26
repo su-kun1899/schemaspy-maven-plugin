@@ -27,6 +27,7 @@ public class SchemaSpyMojoTest {
     File pom = new File(baseDir, "pom.xml");
     String databaseType = "mysql";
     String host = "localhost";
+    String port = "13306";
     String user = "test_user";
     String dbName = "test";
     String outputDirectory = "target";
@@ -38,6 +39,7 @@ public class SchemaSpyMojoTest {
     // Assert
     assertThat(mojo.getDatabaseType(), is(databaseType));
     assertThat(mojo.getHost(), is(host));
+    assertThat(mojo.getPort(), is(port));
     assertThat(mojo.getUser(), is(user));
     assertThat(mojo.getDbName(), is(dbName));
     assertThat(mojo.getOutputDirectory(), is(outputDirectory));
@@ -60,8 +62,6 @@ public class SchemaSpyMojoTest {
 
   @Test
   public void generateHtml() throws Exception {
-    // ローカルにデータベースがないと動かないので、Ignoreしています
-
     // Arrange
     File baseDir = resources.getBasedir("project");
     File pom = new File(baseDir, "pom.xml");
@@ -77,8 +77,6 @@ public class SchemaSpyMojoTest {
 
   @Test
   public void generateHtmlWhenMinimumConfigration() throws Exception {
-    // ローカルにデータベースがないと動かないので、Ignoreしています
-
     // Arrange
     File baseDir = resources.getBasedir("minimum");
     File pom = new File(baseDir, "pom.xml");
