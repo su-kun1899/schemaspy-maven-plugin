@@ -23,6 +23,7 @@ public class SchemaSpyConfigParserTest {
       configMap = new LinkedHashMap<>();
       configMap.put(ParameterType.DATABASE_TYPE, "mysql");
       configMap.put(ParameterType.HOST, "localhost");
+      configMap.put(ParameterType.PORT, "13306");
       configMap.put(ParameterType.DB_NAME, "test");
       configMap.put(ParameterType.USER, "root");
       configMap.put(ParameterType.PASSWORD, "hogehoge");
@@ -53,6 +54,8 @@ public class SchemaSpyConfigParserTest {
     configList.add("mysql");
     configList.add("-host");
     configList.add("localhost");
+    configList.add("-P");
+    configList.add("13306");
     configList.add("-db");
     configList.add("test");
     configList.add("-u");

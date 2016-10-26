@@ -36,6 +36,12 @@ class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   private String host;
 
   /**
+   * Port number of database.
+   */
+  @Parameter(defaultValue = "3306", property = "port", required = false)
+  private String port;
+
+  /**
    * Name of database to connect to
    */
   @Parameter(defaultValue = "sample", property = "dbName", required = true)
@@ -77,6 +83,7 @@ class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
     Map<ParameterType, String> configrations = new LinkedHashMap<>();
     configrations.put(ParameterType.DATABASE_TYPE, getDatabaseType());
     configrations.put(ParameterType.HOST, getHost());
+    configrations.put(ParameterType.PORT, getPort());
     configrations.put(ParameterType.DB_NAME, getDbName());
     configrations.put(ParameterType.USER, getUser());
     configrations.put(ParameterType.PASSWORD, getPassword());
@@ -112,5 +119,9 @@ class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
 
   public String getCharset() {
     return charset;
+  }
+
+  public String getPort() {
+    return port;
   }
 }

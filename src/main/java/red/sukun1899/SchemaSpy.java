@@ -28,8 +28,4 @@ public class SchemaSpy {
   public SchemaSpyConfig getConfig() {
     return config;
   }
-
-  public void setConfig(SchemaSpyConfig config) {
-    this.config = config;
-  }
 }

@@ -17,6 +17,7 @@
                 <configuration>
                     <databaseType>mysql</databaseType>
                     <host>localhost</host>
+                    <port>13306</port>
                     <user>test_user</user>
                     <password>hogehoge</password>
                     <dbName>test</dbName>
