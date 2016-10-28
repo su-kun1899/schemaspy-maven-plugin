@@ -7,6 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -27,7 +28,6 @@ public class SchemaSpyMojoTest {
     File pom = new File(baseDir, "pom.xml");
     String databaseType = "mysql";
     String host = "localhost";
-    String port = "13306";
     String user = "test_user";
     String dbName = "test";
     String outputDirectory = "target";
@@ -39,7 +39,6 @@ public class SchemaSpyMojoTest {
     // Assert
     assertThat(mojo.getDatabaseType(), is(databaseType));
     assertThat(mojo.getHost(), is(host));
-    assertThat(mojo.getPort(), is(port));
     assertThat(mojo.getUser(), is(user));
     assertThat(mojo.getDbName(), is(dbName));
     assertThat(mojo.getOutputDirectory(), is(outputDirectory));
@@ -88,5 +87,19 @@ public class SchemaSpyMojoTest {
     // Assert
     File file = new File("target/schemaspy/index.html");
     assertTrue(file.exists());
+  }
+
+  @Test
+  public void hostWithPort() throws Exception {
+    // given
+    File baseDir = resources.getBasedir("project");
+    File pom = new File(baseDir, "portcustomize.xml");
+    Mojo mojo = mojoRule.lookupMojo("schemaspy", pom);
+
+    // when
+    final Map<ParameterType, String> configrations = ((SchemaSpyMojo) mojo).getConfigrations();
+
+    // then
+    assertThat(configrations.get(ParameterType.HOST), is("127.0.0.1:13306"));
   }
 }

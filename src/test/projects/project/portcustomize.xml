@@ -16,7 +16,8 @@
                 <artifactId>schemaspy-maven-plugin</artifactId>
                 <configuration>
                     <databaseType>mysql</databaseType>
-                    <host>localhost</host>
+                    <host>127.0.0.1</host>
+                    <port>13306</port>
                     <user>test_user</user>
                     <password>hogehoge</password>
                     <dbName>test</dbName>

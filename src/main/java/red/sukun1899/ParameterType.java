@@ -14,7 +14,6 @@ enum ParameterType {
     }
   },
   HOST("-host", false),
-  PORT("-P", false),
   DB_NAME("-db", true),
   USER("-u", true),
   PASSWORD("-p", false),
