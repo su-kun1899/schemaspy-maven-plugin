@@ -82,8 +82,11 @@ class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
   public Map<ParameterType, String> getConfigrations() {
     Map<ParameterType, String> configrations = new LinkedHashMap<>();
     configrations.put(ParameterType.DATABASE_TYPE, getDatabaseType());
-    configrations.put(ParameterType.HOST, getHost());
-    configrations.put(ParameterType.PORT, getPort());
+    if (getPort() != null && !getPort().isEmpty()) {
+      configrations.put(ParameterType.HOST, getHost() + ":" + getPort());
+    } else {
+      configrations.put(ParameterType.HOST, getHost());
+    }
     configrations.put(ParameterType.DB_NAME, getDbName());
     configrations.put(ParameterType.USER, getUser());
     configrations.put(ParameterType.PASSWORD, getPassword());
