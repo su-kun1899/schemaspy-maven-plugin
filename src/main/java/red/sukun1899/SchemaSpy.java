@@ -1,7 +1,6 @@
 package red.sukun1899;
 
-import net.sourceforge.schemaspy.Config;
-import net.sourceforge.schemaspy.SchemaAnalyzer;
+import org.schemaspy.Main;
 
 /**
  * SchemaSpyのエントリポイントとなるクラス
@@ -21,8 +20,7 @@ public class SchemaSpy {
   void execute() throws Exception {
     String[] argv = new SchemaSpyConfigParser(getConfig()).parse();
 
-    SchemaAnalyzer analyzer = new SchemaAnalyzer();
-    analyzer.analyze(new Config(argv));
+    Main.main(argv);
   }
 
   public SchemaSpyConfig getConfig() {
