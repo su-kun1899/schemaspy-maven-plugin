@@ -93,6 +93,9 @@ class SchemaSpyMojo extends AbstractMojo implements SchemaSpyConfig {
     configrations.put(ParameterType.CHARSET, getCharset());
     configrations.put(ParameterType.OUTPUT_DIRECTORY, getOutputDirectory());
 
+    // hack for mysql
+    configrations.put(ParameterType.SCHEMA, getDbName());
+
     return configrations;
   }
 

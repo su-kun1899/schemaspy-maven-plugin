@@ -17,7 +17,8 @@ enum ParameterType {
   DB_NAME("-db", true),
   USER("-u", true),
   PASSWORD("-p", false),
-  CHARSET("-charset", false);
+  CHARSET("-charset", false),
+  SCHEMA("-s", false);
 
   ParameterType(final String parameter, final boolean isRequired) {
     this.parameter = parameter;
